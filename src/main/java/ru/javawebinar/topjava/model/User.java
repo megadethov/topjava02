@@ -14,9 +14,9 @@ public class User extends NamedEntity {
 
     private boolean enabled = true;
 
-    private Date registered = new Date();
+    private Date registered;
 
-    private Set<Role> authorities;
+    private Set<Role> roles;
 
     public User() {
     }
@@ -26,7 +26,7 @@ public class User extends NamedEntity {
         this.email = email;
         this.password = password;
         this.enabled = true;
-        this.authorities = EnumSet.of(role, roles);
+        this.roles = EnumSet.of(role, roles);
     }
 
     public String getEmail() {
@@ -61,26 +61,18 @@ public class User extends NamedEntity {
         return enabled;
     }
 
-    public void addAuthority(Role authority) {
-        if (authorities == null) {
-            authorities = EnumSet.of(authority);
-        } else {
-            authorities.add(authority);
-        }
-    }
-
-    public Collection<Role> getAuthorities() {
-        return authorities;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                "email='" + email + '\'' +
-                ", password='" + password + '\'' +
+        return "User (" +
+                "id=" + id +
+                ", email=" + email +
+                ", name=" + name +
                 ", enabled=" + enabled +
-                ", registered=" + registered +
-                '}';
+                ", roles=" + roles +
+                ')';
     }
 }

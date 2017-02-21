@@ -4,6 +4,7 @@ package ru.javawebinar.topjava.model;
  * Created by mega
  */
 public class NamedEntity extends BaseEntity {
+
     protected String name;
 
     public NamedEntity() {
