@@ -2,8 +2,8 @@ package ru.javawebinar.topjava.model;
 
 import ru.javawebinar.topjava.util.TimeUtil;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * Created by mega
@@ -21,6 +21,10 @@ public class UserMeal extends BaseEntity {
     public UserMeal() {
     }
 
+    public UserMeal(UserMeal meal) {
+        this(meal.id, meal.dateTime, meal.description, meal.calories);
+    }
+
     public UserMeal(Integer id, LocalDateTime dateTime, String description, int calories) {
         super(id);
         this.dateTime = dateTime;
@@ -28,9 +32,13 @@ public class UserMeal extends BaseEntity {
         this.calories = calories;
     }
 
-    public LocalDateTime getDateTime() {
+
+        public LocalDateTime getDateTime() {
         return dateTime;
     }
+   /* public Timestamp getDateTime() {
+        return Timestamp.valueOf(dateTime);
+    }*/
 
     public String getDescription() {
         return description;
@@ -48,6 +56,21 @@ public class UserMeal extends BaseEntity {
         return user;
     }
 
+
+        public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+/*
+    public void setDateTime(Timestamp dateTime) {
+        this.dateTime = dateTime.toLocalDateTime();
+    }
+*/
+
+
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
+
     @Override
     public String toString() {
         return "Meal(" + id + ", " + TimeUtil.toString(dateTime) + ", '" + description + "', calories:" + calories + ')';
@@ -56,4 +79,5 @@ public class UserMeal extends BaseEntity {
     public void setUser(User user) {
         this.user = user;
     }
+
 }
