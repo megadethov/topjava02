@@ -1,22 +1,24 @@
 package ru.javawebinar.topjava.model;
 
-import java.util.*;
+import java.util.Date;
+import java.util.EnumSet;
+import java.util.Set;
 
 /**
  * Created by mega
  */
 public class User extends NamedEntity {
 
-    private String email;
+    protected String email;
 
-    // Length (min = 5)
-    private String password;
+    //  Length(min = 5)
+    protected String password;
 
-    private boolean enabled = true;
+    protected boolean enabled = true;
 
-    private Date registered;
+    protected Date registered;
 
-    private Set<Role> roles;
+    protected Set<Role> roles;
 
     public User() {
     }
@@ -45,10 +47,6 @@ public class User extends NamedEntity {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -71,6 +69,10 @@ public class User extends NamedEntity {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     @Override
