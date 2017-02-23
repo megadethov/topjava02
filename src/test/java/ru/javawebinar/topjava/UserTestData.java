@@ -8,9 +8,9 @@ import ru.javawebinar.topjava.model.User;
 import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.function.Function;
 
 public class UserTestData {
+
     private static final LoggerWrapper LOG = LoggerWrapper.get(UserTestData.class);
 
     public static final TestUser USER = new TestUser(BaseEntity.START_SEQ, "User", "user@yandex.ru", "password", true, Role.ROLE_USER);
@@ -67,10 +67,5 @@ public class UserTestData {
     }
 
     public static final ModelMatcher<User, TestUser> MATCHER = new ModelMatcher<>(
-            new Function<User, TestUser>() {
-                @Override
-                public TestUser apply(User u) {
-                    return ((u instanceof TestUser) ? (TestUser) u : new TestUser(u));
-                }
-            });
+            u -> ((u instanceof TestUser) ? (TestUser) u : new TestUser(u)));
 }
