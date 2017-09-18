@@ -1,14 +1,17 @@
 package ru.javawebinar.topjava.repository.jpa;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
+@Transactional(readOnly = true)
 public class JpaUserRepository implements UserRepository {
 
 /*
@@ -24,6 +27,7 @@ public class JpaUserRepository implements UserRepository {
     private EntityManager em;
 
     @Override
+    @Transactional
     public User save(User user) {
         if (user.isNew()) {
             em.persist(user);
@@ -39,17 +43,18 @@ public class JpaUserRepository implements UserRepository {
     }
 
     @Override
+    @Transactional
     public boolean delete(int id) {
-//        User ref = em.getReference(User.class, id);
-//        em.remove(ref);
+
+/*
+        User ref = em.getReference(User.class, id);
+        em.remove(ref);
 
         TypedQuery<User> query = em.createQuery("DELETE FROM User u WHERE u.id=:id", User.class);
         return query.setParameter("id", id).executeUpdate() != 0;
-    }
-/*
-        return em.createNamedQuery(User.DELETE)
-                .setParameter("id", id)
-                .executeUpdate() != 0;
+*/
+        return em.createNamedQuery(User.DELETE).setParameter("id", id).executeUpdate() != 0;
+
     }
 
     @Override
@@ -61,5 +66,5 @@ public class JpaUserRepository implements UserRepository {
     public List<User> getAll() {
         return em.createNamedQuery(User.ALL_SORTED, User.class).getResultList();
     }
-*/
+
 }
