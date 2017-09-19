@@ -47,6 +47,9 @@ public class User extends NamedEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     protected Set<Role> roles;
 
+    //    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user", fetch = FetchType.LAZY)
+    //    private List<UserMeal> userMeals = new LinkedList<>();
+
     public User() {
     }
 
