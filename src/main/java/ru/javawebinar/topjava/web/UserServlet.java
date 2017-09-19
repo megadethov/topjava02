@@ -1,7 +1,11 @@
 package ru.javawebinar.topjava.web;
 
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import ru.javawebinar.topjava.LoggerWrapper;
+import ru.javawebinar.topjava.service.UserService;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,12 +16,20 @@ import java.io.IOException;
  * Created by mega
  */
 public class UserServlet extends HttpServlet {
-private static final LoggerWrapper LOG = LoggerWrapper.get(UserServlet.class);
+    private static final LoggerWrapper LOG = LoggerWrapper.get(UserServlet.class);
+    private WebApplicationContext wac;
 
-@Override
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        wac = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.getRequestDispatcher("/userList.jsp").forward(request, response);
-        LOG.debug("redirect to userList.jsp");
-        response.sendRedirect("userList.jsp");
+        LOG.debug("redirect to userList");
+        UserService userService = wac.getBean(UserService.class);
+        request.setAttribute("userList", userService.getAll());
+        request.getRequestDispatcher("/userList.jsp").forward(request, response);
+//        response.sendRedirect("userList.jsp");
     }
 }
