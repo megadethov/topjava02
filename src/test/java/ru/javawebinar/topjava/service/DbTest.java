@@ -7,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ru.javawebinar.topjava.repository.JpaUtil;
 import ru.javawebinar.topjava.util.DbPopulator;
 
 @ContextConfiguration({
@@ -21,9 +20,6 @@ abstract public class DbTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Autowired
-    private JpaUtil jpaUtil;
-
-    @Autowired
     private DbPopulator dbPopulator;
 
     @Autowired
@@ -33,6 +29,5 @@ abstract public class DbTest {
     public void setUp() throws Exception {
         dbPopulator.execute();
         userService.evictCache();
-        jpaUtil.clear2ndLevelHibernateCache();
     }
 }
