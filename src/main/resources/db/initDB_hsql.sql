@@ -12,8 +12,7 @@ CREATE TABLE users
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   registered TIMESTAMP DEFAULT now(),
-  enabled BOOLEAN DEFAULT TRUE,
-  calories_per_day INTEGER DEFAULT 2000 NOT NULL
+  enabled BOOLEAN DEFAULT TRUE
 );
 CREATE UNIQUE INDEX user_email_key ON USERS ( email );
 
