@@ -11,9 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import java.util.Date;
-import java.util.EnumSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by mega
@@ -113,6 +111,14 @@ public class User extends NamedEntity {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setRoles(Role... authorities) {
+        setRoles(EnumSet.copyOf(Arrays.asList(authorities)));
+    }
+
+    public void setRoles(Set<Role> authorities) {
+        this.roles = Collections.unmodifiableSet(authorities);
     }
 
     @Override

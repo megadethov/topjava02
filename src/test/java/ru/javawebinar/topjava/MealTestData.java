@@ -27,5 +27,5 @@ public class MealTestData {
         return updated;
     }
 
-    public static final ModelMatcher<UserMeal, String> MATCHER = new ModelMatcher<>(UserMeal::toString);
+    public static final ModelMatcher<UserMeal, String> MATCHER = new TestUtil.ToStringModelMatcher<>(UserMeal.class);
 }

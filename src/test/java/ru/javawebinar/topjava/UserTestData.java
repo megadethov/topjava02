@@ -32,6 +32,10 @@ public class UserTestData {
             super(id, name, email, password, enabled, roles);
         }
 
+        public User copyAsUser() {
+            return new User(this);
+        }
+
         public User asUser() {
             return new User(this);
         }
