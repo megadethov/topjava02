@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 /**
@@ -44,7 +45,7 @@ public class User extends NamedEntity {
     protected boolean enabled = true;
 
     @Column(name = "registered", columnDefinition = "timestamp default now()")
-    @NotEmpty
+    @NotNull
     protected Date registered = new Date();
 
     @Enumerated(EnumType.STRING)
