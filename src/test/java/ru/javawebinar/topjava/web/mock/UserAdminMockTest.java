@@ -5,8 +5,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.javawebinar.topjava.model.Role;
-import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 import ru.javawebinar.topjava.web.user.AdminUserRestController;
 
@@ -25,12 +23,7 @@ public class UserAdminMockTest {
 
     @AfterClass
     public static void afterClass() {
-        appCtx.close();
-    }
-
-    @Test
-    public void testCreate() throws Exception {
-        controller.create(new User(null, "Name", "email@ya.ru", "password", true, Role.ROLE_USER));
+//        appCtx.close();
     }
 
     @Test
