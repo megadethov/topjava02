@@ -7,16 +7,9 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
-/**
- * Created by mega
- */
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "unique_email")})
 @NamedQueries({
@@ -53,11 +46,11 @@ public class User extends NamedEntity {
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    //    @JsonIgnore
+//    @JsonIgnore
     protected Set<Role> roles;
 
-    //    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user", fetch = FetchType.LAZY)
-    //    private List<UserMeal> userMeals = new LinkedList<>();
+//    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<UserMeal> userMeals = new LinkedList<>();
 
     public User() {
     }
@@ -115,11 +108,11 @@ public class User extends NamedEntity {
     }
 
     public void setRoles(Role... authorities) {
-        setRoles(EnumSet.copyOf(Arrays.asList(authorities)));
+        setRoles(Arrays.asList(authorities));
     }
 
-    public void setRoles(Set<Role> authorities) {
-        this.roles = Collections.unmodifiableSet(authorities);
+    public void setRoles(Collection<Role> authorities) {
+        this.roles = Collections.unmodifiableSet(EnumSet.copyOf(authorities));
     }
 
     @Override
