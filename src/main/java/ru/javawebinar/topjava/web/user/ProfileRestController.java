@@ -16,7 +16,8 @@ import ru.javawebinar.topjava.service.UserService;
  * Created by mega
  */
 @RestController
-public class UserRestController {
+@RequestMapping("/rest/profile")
+public class ProfileRestController {
 
     @Autowired
     private UserHelper helper;

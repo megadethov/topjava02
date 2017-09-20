@@ -5,12 +5,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.javawebinar.topjava.LoggerWrapper;
 import ru.javawebinar.topjava.model.User;
-import ru.javawebinar.topjava.service.UserService;
 
 import java.net.URI;
 import java.util.List;
@@ -18,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/rest/admin/users")
 public class AdminUserRestController {
-    private static final LoggerWrapper LOG = LoggerWrapper.get(UserRestController.class);
+    private static final LoggerWrapper LOG = LoggerWrapper.get(ProfileRestController.class);
 
     @Autowired
     private UserHelper helper;
