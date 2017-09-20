@@ -12,7 +12,7 @@ import ru.javawebinar.topjava.util.TimeUtil;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-public class LocalDateTimeConverter {
+public class JsonLocalDateTimeConverter {
     public static class UserSettingSerializer extends JsonSerializer<LocalDateTime> {
         @Override
         public void serialize(LocalDateTime ldt, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
